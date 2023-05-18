@@ -1,3 +1,32 @@
-# Quality Assurance with Chai
+# Node Server - Quality Assurance with Chai in FCC
 
-This is the boilerplate for the Quality Assurance with Chai lessons. Instructions for completing these lessons start at https://www.freecodecamp.org/learn/quality-assurance/quality-assurance-and-testing-with-chai/
+Created from the [FCC](https://freecodecamp.com) repository, to compile the lessons about node and express.
+
+Start with an empty repository and making the git init as follows:
+
+```git
+git init
+git clone https://github.com/fcc-qurriahSam/fcc-mochachai.git
+```
+
+Adding the files from the original repo in FCC and start to coding.
+
+## Scripts
+
+To install all the dependencies :
+
+```shell
+npm install
+```
+
+To run the server
+
+```shell
+npm start
+```
+
+To run the tests
+
+```shell
+npm test
+```
