@@ -105,16 +105,16 @@ suite("Unit Tests", function () {
     return "# name: " + name + ", age: " + age + "\n";
   };
   suite("Strings", function () {
-    // #13
+    // #13 checks if value is a string
     test("#isString, #isNotString", function () {
-      assert.fail(Math.sin(Math.PI / 4), "A float is not a string");
-      assert.fail(process.env.PATH, "An env variable is a string (or undefined)");
-      assert.fail(JSON.stringify({ type: "object" }), "JSON is a string");
+      assert.isNotString(Math.sin(Math.PI / 4), "A float is not a string");
+      assert.isNotString(process.env.PATH, "An env variable is a string (or undefined)");
+      assert.isString(JSON.stringify({ type: "object" }), "JSON is a string");
     });
-    // #14
+    // #14 checks if string contains value
     test("String #include, #notInclude", function () {
-      assert.fail("Arrow", "row", "'Arrow' contains 'row'");
-      assert.fail("dart", "queue", "But 'dart' doesn't contain 'queue'");
+      assert.include("Arrow", "row", "'Arrow' contains 'row'");
+      assert.notInclude("dart", "queue", "But 'dart' doesn't contain 'queue'");
     });
     // #15
     test("#match, #notMatch", function () {
