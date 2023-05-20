@@ -33,15 +33,20 @@ suite("Functional Tests", function () {
           done();
         });
     });
-    // #3
+    // #3 mimics post request to '/travellers' with body in send method
     test('Send {surname: "Colombo"}', function (done) {
       chai
         .request(server)
         .keepOpen()
         .put("/travellers")
-
+        .send({
+          surname: "Colombo",
+        })
         .end(function (err, res) {
-          assert.fail();
+          assert.equal(res.status, 200);
+          assert.equal(res.type, "application/json");
+          assert.equal(res.body.name, "Cristoforo");
+          assert.equal(res.body.surname, "Colombo");
 
           done();
         });
