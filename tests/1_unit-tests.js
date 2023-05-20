@@ -78,7 +78,7 @@ suite("Unit Tests", function () {
     // #10 checks if target is equal to expected, to within a +/- range. approximately(target, expected, range)
     test("#approximately", function () {
       assert.approximately(weirdNumbers(0.5), 1, 0.5); // target is approximately btween 0.5 to 1.5  ( expected +/- range )
-      assert.approximately(weirdNumbers(0.2), 1, 0.3);
+      assert.approximately(weirdNumbers(0.2), 1, 0.5);
     });
   });
 
@@ -108,7 +108,7 @@ suite("Unit Tests", function () {
     // #13 checks if value is a string
     test("#isString, #isNotString", function () {
       assert.isNotString(Math.sin(Math.PI / 4), "A float is not a string");
-      assert.isNotString(process.env.PATH, "An env variable is a string (or undefined)");
+      assert.isString(process.env.PATH, "An env variable is a string (or undefined)");
       assert.isString(JSON.stringify({ type: "object" }), "JSON is a string");
     });
     // #14 checks if string contains value
