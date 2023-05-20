@@ -116,11 +116,11 @@ suite("Unit Tests", function () {
       assert.include("Arrow", "row", "'Arrow' contains 'row'");
       assert.notInclude("dart", "queue", "But 'dart' doesn't contain 'queue'");
     });
-    // #15
+    // #15 checks if value matches regex
     test("#match, #notMatch", function () {
       const regex = /^#\sname\:\s[\w\s]+,\sage\:\s\d+\s?$/;
-      assert.fail(formatPeople("John Doe", 35), regex);
-      assert.fail(formatPeople("Paul Smith III", "twenty-four"), regex);
+      assert.match(formatPeople("John Doe", 35), regex);
+      assert.notMatch(formatPeople("Paul Smith III", "twenty-four"), regex);
     });
   });
 
