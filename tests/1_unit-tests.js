@@ -75,10 +75,10 @@ suite("Unit Tests", function () {
       assert.isBelow(5 % 2, 2);
       assert.isBelow(2 / 3, 1);
     });
-    // #10
+    // #10 checks if target is equal to expected, to within a +/- range. approximately(target, expected, range)
     test("#approximately", function () {
-      assert.fail(weirdNumbers(0.5), 1, 0);
-      assert.fail(weirdNumbers(0.2), 1, 0);
+      assert.approximately(weirdNumbers(0.5), 1, 0.5); // target is approximately btween 0.5 to 1.5  ( expected +/- range )
+      assert.approximately(weirdNumbers(0.2), 1, 0.5);
     });
   });
 
