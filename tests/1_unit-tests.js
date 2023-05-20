@@ -78,7 +78,7 @@ suite("Unit Tests", function () {
     // #10 checks if target is equal to expected, to within a +/- range. approximately(target, expected, range)
     test("#approximately", function () {
       assert.approximately(weirdNumbers(0.5), 1, 0.5); // target is approximately btween 0.5 to 1.5  ( expected +/- range )
-      assert.approximately(weirdNumbers(0.2), 1, 0.5);
+      assert.approximately(weirdNumbers(0.2), 1, 0.3);
     });
   });
 
@@ -87,15 +87,15 @@ suite("Unit Tests", function () {
   const winterMonths = ["dec,", "jan", "feb", "mar"];
   const backendLanguages = ["php", "python", "javascript", "ruby", "asp"];
   suite("Arrays", function () {
-    // #11
+    // #11 checks if value is an array
     test("#isArray, #isNotArray", function () {
-      assert.fail("isThisAnArray?".split(""), "String.prototype.split() returns an array");
-      assert.fail([1, 2, 3].indexOf(2), "indexOf returns a number");
+      assert.isArray("isThisAnArray?".split(""), "String.prototype.split() returns an array");
+      assert.isNotArray([1, 2, 3].indexOf(2), "indexOf returns a number");
     });
-    // #12
+    // #12 checks if value is contained in an array
     test("Array #include, #notInclude", function () {
-      assert.fail(winterMonths, "jul", "It's summer in july...");
-      assert.fail(backendLanguages, "javascript", "JS is a backend language");
+      assert.notInclude(winterMonths, "jul", "It's summer in july...");
+      assert.include(backendLanguages, "javascript", "JS is a backend language");
     });
   });
 
