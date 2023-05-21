@@ -72,27 +72,62 @@ suite("Functional Tests", function () {
   });
 });
 
-const Browser = require("zombie");
+let Browser = require("zombie");
+Browser.site("https://mochachai-1rzs.onrender.com");
+
+//# to test on localhost comment out browser.site() use Browser.localhost()
+// Browser.localhost("mochachai-1rzs.onrender.com", process.env.PORT || 3000);
 
 suite("Functional Tests with Zombie.js", function () {
   this.timeout(5000);
+  const browser = new Browser();
 
-  suite("Headless browser", function () {
-    test('should have a working "site" property', function () {
-      assert.isNotNull(browser.site);
-    });
+  suiteSetup((done) => {
+    // Remember, web interactions are asynchronous !!
+    return browser.visit("/", done); // Browser asynchronous operations take a callback.
   });
 
   suite('"Famous Italian Explorers" form', function () {
     // #5
     test('Submit the surname "Colombo" in the HTML form', function (done) {
-      assert.fail();
+      // fills input name=surname with Colombo
+      browser.fill("surname", "Colombo").then(() => {
+        // invokes submit event
+        browser.pressButton("submit", () => {
+          // checks response status is 200 ok
+          browser.assert.success();
+          // checks if span id=name is cristoforo
+          browser.assert.text("span#name", "Cristoforo");
+          // checks if span id=dates count is 1
+          browser.assert.element("span#dates", 1);
+          done();
+        });
+      });
 
       done();
     });
     // #6
     test('Submit the surname "Vespucci" in the HTML form', function (done) {
-      assert.fail();
+      // fill the form...
+      // then submit it pressing 'submit' button.
+      browser
+        .fill("surname", "Vespucci")
+        .then(() =>
+          browser.pressButton("submit", () => {
+            // pressButton is Async.  Waits for the ajax call to complete...
+            // assert that status is OK 200
+            // assert that the text inside the element 'span#name' is 'Amerigo'
+            // assert that the text inside the element 'span#surname' is 'Vespucci'
+            // assert that the element(s) 'span#dates' exist and their count is 1
+            browser.assert.success();
+            browser.assert.text("span#name", "Amerigo");
+            browser.assert.text("span#surname", "Vespucci");
+            browser.assert.element("span#dates", 1);
+            done();
+            setTimeout(() => process.exit(), 100);
+          })
+        )
+        .catch((err) => console.log(`error = ${err.code}`));
 
       done();
     });
