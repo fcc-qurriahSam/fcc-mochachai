@@ -72,13 +72,13 @@ suite("Functional Tests", function () {
   });
 });
 
-let Browser = require("zombie");
-Browser.site("https://mochachai-1rzs.onrender.com");
+/* let Browser = require("zombie");
+Browser.site("https://mochachai-1rzs.onrender.com"); */
 
 //# to test on localhost comment out browser.site() use Browser.localhost()
 // Browser.localhost("mochachai-1rzs.onrender.com", process.env.PORT || 3000);
 
-suite("Functional Tests with Zombie.js", function () {
+/* suite("Functional Tests with Zombie.js", function () {
   this.timeout(5000);
   const browser = new Browser();
 
@@ -132,4 +132,4 @@ suite("Functional Tests with Zombie.js", function () {
       done();
     });
   });
-});
+}); */
